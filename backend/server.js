@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
+import cors from "cors";
 dotenv.config();
 
 mongoose
@@ -16,6 +17,7 @@ mongoose
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.listen(3000, () => console.log("Server running on port 3000"));
 
@@ -27,7 +29,7 @@ app.use((err, req, res, next) => {
   const message = err.message || "Internal server error";
 
   return res.status(statusCode).json({
-    error: false,
+    error: true,
     message,
     statusCode,
   });
