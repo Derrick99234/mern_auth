@@ -35,6 +35,7 @@ function Signin() {
         return;
       }
       dispatch(signInSucess(data));
+      localStorage.setItem("token", data.token);
       navigate("/");
     } catch (e) {
       dispatch(signInFailure(e));
